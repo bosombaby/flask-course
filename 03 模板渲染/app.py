@@ -21,6 +21,11 @@ def index():
     return render_template("index.html", name=name, movies=movies)
 
 
+@app.route("/hello")
+def hello():
+    return "Hello Flask"
+
+
 if __name__ == "__main__":
     # 自动刷新
     app.jinja_env.auto_reload = True
