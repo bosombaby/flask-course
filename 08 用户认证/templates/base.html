@@ -13,6 +13,7 @@
     {% for message in get_flashed_messages() %}
         <div class="alert">{{ message }}</div>
     {% endfor %}
+
     <h2>
 <!--        引用图片-->
         {{ user.name }}
@@ -21,7 +22,12 @@
     {# 使用 length 过滤器获取 movies 变量的长度 #}
     <nav>
         <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('setting') }}">Settings</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
     {% block content %}
