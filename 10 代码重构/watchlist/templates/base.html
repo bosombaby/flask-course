@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block head %}
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{url_for('static',filename='favicon.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <title>{{ name }}</title>
+   {% endblock %}
+</head>
+<body>
+    <!--显示消息-->
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    <h2>
+<!--        引用图片-->
+        {{ user.name }}
+         <img src="{{url_for('static',filename='images/鸡腿.png')}}">
+    </h2>
+    {# 使用 length 过滤器获取 movies 变量的长度 #}
+    <nav>
+        <ul>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('setting') }}">Settings</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+     <img  class="totoro" src="{{url_for('static',filename='images/可乐.png')}}">
+    <footer>
+        <small>&copy; 2023 <a href="https://github.com/bosombaby/flask-course">flask-course</a></small>
+    </footer>
+</body>
+</html>
