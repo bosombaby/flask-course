@@ -1,5 +1,5 @@
 import unittest
-from ..app import app, db, Movie, User, init, admin
+from app import app, db, Movie, User, init, admin
 
 
 class WatchlistTestCase(unittest.TestCase):
